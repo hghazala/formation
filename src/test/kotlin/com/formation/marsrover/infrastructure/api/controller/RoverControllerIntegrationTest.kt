@@ -23,7 +23,7 @@ class RoverControllerIntegrationTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
-    @MockkBean
+    @Autowired
     private lateinit var roverAdapter: RoverAdapter
 
     private val jsonMapper = ObjectMapper()
@@ -31,7 +31,6 @@ class RoverControllerIntegrationTest {
     @Test
     fun `should get rover`() {
         val rover = RoverView(0,0,"N")
-        every { roverAdapter.getRover() } returns rover
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("/rover")
