@@ -1,11 +1,8 @@
 package com.formation.marsrover.infrastructure.api
 
-import com.formation.marsrover.domain.Direction
-import com.formation.marsrover.domain.Position
-import com.formation.marsrover.domain.Rover
+import com.formation.marsrover.domain.RoverQuery
 
-
-class RoverAdapter {
-    fun getRover(): RoverView = RoverView.from(Rover(Position(x = 0, y = 0), direction = Direction.N))
+class RoverAdapter private constructor(val roverQuery: RoverQuery) {
+    fun getRover(): RoverView = RoverView.from(roverQuery.find())
 
 }

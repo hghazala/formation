@@ -8,6 +8,7 @@ class MarsRoverApplicationTests {
 
 	@Test
 	fun contextLoads() {
+
 	}
 
 }

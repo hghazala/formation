@@ -5,6 +5,7 @@ import com.formation.marsrover.infrastructure.api.RoverAdapter
 import com.formation.marsrover.infrastructure.api.RoverView
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
+import io.mockk.verify
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -23,7 +24,7 @@ class RoverControllerIntegrationTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
-    @Autowired
+    @MockBean
     private lateinit var roverAdapter: RoverAdapter
 
     private val jsonMapper = ObjectMapper()
@@ -31,6 +32,7 @@ class RoverControllerIntegrationTest {
     @Test
     fun `should get rover`() {
         val rover = RoverView(0,0,"N")
+        every {roverAdapter.getRover()} returns rover
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("/rover")
@@ -39,5 +41,7 @@ class RoverControllerIntegrationTest {
         ).andExpect(
             content().json(jsonMapper.writeValueAsString(rover))
         )
+
+        verify (exactly=1) {roverAdapter.getRover()}
     }
 }
