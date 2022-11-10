@@ -9,9 +9,10 @@ class RoverController {
 
     @GetMapping("/rover")
     fun getRover(): ResponseEntity<RoverView> {
-        return ResponseEntity.ok(RoverView())
+        return ResponseEntity.ok(RoverView(0,0,"N"))
     }
 
 }
 
-data class RoverView(val position: String = "")
+data class RoverView(val x: Int, val y: Int, val direction: String)
+

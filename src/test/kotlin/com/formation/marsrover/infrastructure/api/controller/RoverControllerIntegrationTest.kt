@@ -22,7 +22,7 @@ class RoverControllerIntegrationTest {
 
     @Test
     fun `should get rover`() {
-        val rover = RoverView()
+        val rover = RoverView(0,0,"N")
         mockMvc.perform(
             MockMvcRequestBuilders.get("/rover")
         ).andExpect(
